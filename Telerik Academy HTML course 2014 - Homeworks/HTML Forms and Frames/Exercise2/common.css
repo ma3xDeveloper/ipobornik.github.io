@@ -1,0 +1,26 @@
+table {
+    border-collapse: collapse;
+}
+
+table, tr, td, th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+th {
+    
+    padding: 6px;
+}
+
+td {
+    padding-left: 7px;
+    height: 32px;
+}
+
+
+.center-align {
+    text-align: center;
+    padding: 0px;
+    font-weight: bold;
+}

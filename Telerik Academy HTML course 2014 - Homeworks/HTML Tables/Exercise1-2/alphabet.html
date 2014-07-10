@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise1-2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        td.left-align {
+            text-align: left;
+        }
+
+        td.right-align {
+            text-align: right;
+        }
+
+        td.bottom-right {
+            text-align: right;
+            vertical-align: bottom;
+        }
+
+        table {
+            text-align: center;
+        }
+
+        table, td, th {
+            border: 1.1px solid #2c2c2c;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <colgroup>
+            <col style="width: 38px" />
+            <col style="width: 38px" />
+            <col style="width: 38px" />
+            <col style="width: 38px" />
+            <col style="width: 38px" />
+        </colgroup>
+        <tr>
+            <td colspan="3">Title goes here</td>
+            <td>A</td>
+            <td class="right-align">B</td>
+        </tr>
+        <tr>
+            <td rowspan="3" class="left-align">C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td class="right-align">G</td>
+        </tr>
+        <tr>
+            <td>H</td>
+            <td colspan="2">I</td>
+            <td rowspan="2" class="bottom-right">J</td>
+        </tr>
+        <tr>
+            <td>K</td>
+            <td>L</td>
+            <td>M</td>
+        </tr>
+        <tr>
+            <td class="right">N</td>
+            <td colspan="4">O</td>
+        </tr>
+    </table>
+</body>
+</html>
