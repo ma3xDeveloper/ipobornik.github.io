@@ -1,0 +1,208 @@
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p,
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-family: Calibri, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*rado gallery 2 css*/
+
+table {
+    border: 0;
+    width: 100%;
+}
+
+table, th, tr, td {
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+}
+
+    td > a > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 0.75;
+    }
+
+        td > a > img:hover {
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            -moz-transition: all 0.6s ease-out; /* FF4+ */
+            -o-transition: all 0.6s ease-out; /* Opera 10.5+ */
+            -webkit-transition: all 0.6s ease-out; /* Saf3.2+, Chrome */
+            -ms-transition: all 0.6s ease-out; /* IE10? */
+            transition: all 0.6s ease-out;
+        }
+
+.smallImg {
+    width: 12.5%;
+    height: 154px;
+}
+
+.middleImg {
+    width: 25%;
+    height: 308px;
+}
+
+.bigImg {
+    width: 37.5%;
+    height: 308px;
+}
+
+
+
+
+/*footer css*/
+#Footer {
+    width: 100%;
+    height: 50px;
+    background: #111;
+}
+
+    #Footer .Main {
+        width: 100%;
+        height: 50px;
+        margin-top: -1px;
+        padding-top: 1px;
+    }
+
+    #Footer .Bottom {
+        width: 100%;
+        height: 60px;
+        background: #000;
+    }
+
+    #Footer .Social {
+        width: 300px;
+        float: left;
+    }
+
+    #Footer .Copyright {
+        font-size: 14pt;
+        background: #111;
+        /*text-transform: uppercase;*/
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        color: #ffffff;
+        opacity: .2;
+        line-height: 20px;
+        float: left;
+        padding-top: 17px;
+    }
+
+        #Footer .Copyright a {
+            font-size: 14pt;
+            background: #111;
+        }
+
+    #Footer .Maker {
+        width: 300px;
+        float: left;
+    }
+
+        #Footer .Maker a {
+            width: 60px;
+            height: 24px;
+            display: block;
+            float: right;
+            margin-top: 15px;
+            background: url(../Images/DOT-white.png ) center center no-repeat;
+        }
+
+    #Footer .Logo {
+        width: 120px;
+        height: 70px;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        background: url(../Images/WhiteLogo.png) center center no-repeat;
+    }
+
+    #Footer #MenuStatic {
+        position: relative;
+        width: 700px;
+        text-align: center;
+        margin: auto;
+        font-size: 10px;
+        color: #fff;
+    }
+
+        #Footer #MenuStatic a {
+            opacity: .1;
+        }
+
+            #Footer #MenuStatic a:hover {
+                opacity: .7;
+            }
+
+
+
+
+
+
+
+/*# sourceMappingURL=style.css.map */
+
+.flip3D {
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+    float: left;
+}
+
+    .flip3D > .front {
+        position: absolute;
+        transform: rotateY( 0deg );
+        width: 200px;
+        height: 200px;
+        border-radius: 7px;
+        backface-visibility: hidden;
+        transition: transform .5s linear 0s;
+        overflow: hidden;
+    }
+
+    .flip3D > .back {
+        position: absolute;
+        transform: rotateY( 180deg );
+        background-color: #ff6a00;
+        width: 200px;
+        height: 200px;
+        border-radius: 7px;
+        backface-visibility: hidden;
+        transition: transform .5s linear 0s;
+        overflow: auto;
+    }
+
+    .flip3D:hover > .front {
+        transform: rotateY( -180deg );
+    }
+
+    .flip3D:hover > .back {
+        transform: rotateY( 0deg );
+    }
+
+    .flip3D img {
+        width: 100%;
+        height: auto;
+        border: 2px solid #ffffff;
+    }
+
+    .flip3D a {
+        clear: left;
+        margin-top: 260px;
+    }
+
+#shukri-photo {
+    min-height:100%;
+}
