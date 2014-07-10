@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 04</title>
+    <link type="text/css" rel="stylesheet" href="common.css" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div id="calculator-wrapper">
+        <nav>
+            <ul>
+                <li><span class="menu-shortcut">V</span>iew</li>
+                <li><span class="menu-shortcut">E</span>dit</li>
+                <li><span class="menu-shortcut">H</span>elp</li>
+            </ul>
+        </nav>
+
+        <form class="number-box input-box">
+            <input type="text" id="input-number-area" value="8854455" />
+        </form>
+
+        <div id="binary-box" class="input-box">
+            <table>
+                <tr>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                </tr>
+                <tr class="grey-row">
+                    <td>63</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>47</td>
+                    <td></td>
+                    <td></td>
+                    <td>32</td>
+                </tr>
+                <tr>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                    <td>0000</td>
+                </tr>
+                <tr class="grey-row">
+                    <td>31</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>15</td>
+                    <td></td>
+                    <td></td>
+                    <td>0</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="controls-wrapper">
+            <div id="left-panel">
+                <div id="numeric-system">
+
+                    <form class="input-box">
+                        <ul>
+                            <li>
+                                <input type="radio" id="hex" name="num-system" />
+                                <label for="hex">Hex</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="dec" name="num-system" checked="checked" />
+                                <label for="dex">Dec</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="oct" name="num-system" />
+                                <label for="oct">Oct</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="bin" name="num-system" />
+                                <label for="bin">Bin</label>
+                            </li>
+                        </ul>
+                    </form>
+
+                </div>
+                <div id="byte-size">
+
+                    <form class="input-box">
+                        <ul>
+                            <li>
+                                <input type="radio" id="qword" name="byte-size-name" />
+                                <label for="qword">Qword</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="dword" name="byte-size-name" checked="checked" />
+                                <label for="dword">Dword</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="word" name="byte-size-name" />
+                                <label for="word">Word</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="byte" name="byte-size-name" />
+                                <label for="byte">Byte</label>
+                            </li>
+                        </ul>
+                    </form>
+
+                </div>
+            </div>
+            <div id="button-container">
+
+                <form>
+                    <div class="table">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button dark" type="button" disabled="disabled" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Mod" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="A" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button dark" type="button" value="MC" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button dark" type="button" value="MR" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button dark" type="button" value="MS" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button dark" type="button" value="M+" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button dark" type="button" value="M-" />
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="(" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value=")" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="B" />
+                            </div>
+                            <div class="table-cell">
+                                <input id="arrow" class="button gradient" type="button" value="&larr;" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="CE" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="C" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="&plusmn" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="&radic;" />
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="RoL" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="RoR" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="C" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="7" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="8" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="9" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="/" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="%" />
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Or" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Xor" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="D" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="4" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="5" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="6" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="*" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="1/x" />
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Lsh" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Rsh" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="E" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="1" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="2" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button light" type="button" value="3" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="-" />
+                            </div>
+                            <div class="table-cell">
+                                <input id="eval-button" class="button gradient" type="button" value="=" />
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="Not" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="And" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="F" />
+                            </div>
+                            <div class="table-cell">
+                                <input id="zero-button" class="button light" type="button" value="0" />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button not-usable" type="button" disabled="disabled" value="," />
+                            </div>
+                            <div class="table-cell">
+                                <input class="button gradient" type="button" value="+" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

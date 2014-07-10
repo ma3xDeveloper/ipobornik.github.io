@@ -1,0 +1,17 @@
+﻿body {
+    background-color: #aadeda;
+    color: #113894;
+}
+
+nav {
+    padding-bottom: 3em;
+}
+
+nav a {
+    padding-right: 3em;
+}
+
+h1 {
+    font-style:italic;
+    color: #07105c;
+}
