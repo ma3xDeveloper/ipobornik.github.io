@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>::: SoftUni: The Exam Day, alpha v1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="lib/quintus.js"></script>
+    <script src="lib/quintus_sprites.js"></script>
+    <script src="lib/quintus_scenes.js"></script>
+    <script src="lib/quintus_input.js"></script>
+    <script src="lib/quintus_anim.js"></script>
+    <script src="lib/quintus_2d.js"></script>
+    <script src="lib/quintus_touch.js"></script>
+    <script src="lib/quintus_ui.js"></script>
+</head>
+<body style="background-color: black;">
+    <script>
+        var Q = Quintus()
+            .include("Sprites, Scenes, Input, 2D, Touch, UI")
+            .setup({
+                width: 960,
+                height: 640,
+                development: true
+            }).controls().touch();
+
+
+        //load background tile
+
+        //player
+        Q.Sprite.extend("Player", {
+            init: function (p) {
+                // start coorfinates: x110 Y50
+                this._super(p, { asset: "player.png", x: 100, y: 50, jumpSpeed: -400, lives: 3, coins: 0 });
+                this.add("2d, platformerControls");
+                this.p.timeInvincible = 0;
+
+                this.on("hit.sprite", function (collision) {
+                    if (collision.obj.isA("Coin")) {
+                        collision.obj.destroy();
+                        this.p.coins++;
+                        var coinsLabel = Q("UI.Text", 1).items[1];
+                        coinsLabel.p.label = "Judge exam points: " + this.p.coins + "/100";
+
+                    }
+                });
+            },
+            step: function (dt) {
+                if (Q.inputs["left"] && this.p.direction == "right") {
+                    this.p.flip = "x";
+                }
+                if (Q.inputs["right"] && this.p.direction == "left") {
+                    this.p.flip = false;
+                }
+
+                if (this.p.timeInvincible > 0) {
+                    this.p.timeInvincible = Math.max(this.p.timeInvincible - dt, 0);
+                }
+            },
+            damage: function () {
+                //only damage if not in "invincible" mode, otherwise beign next to an enemy takes all the lives inmediatly
+                if (!this.p.timeInvincible) {
+                    this.p.lives--;
+
+                    //will be invincible for 1 second
+                    this.p.timeInvincible = 1;
+
+                    if (this.p.lives < 0) {
+                        this.destroy();
+                        Q.stageScene("endGame", 1, { label: "Game Over" });
+                    }
+                    else {
+                        //@TODO add an animation to show it"s been damaged
+                        var livesLabel = Q("UI.Text", 1).first();
+                        livesLabel.p.label = "Power " + this.p.lives + "/3";
+                    }
+                }
+            }
+        });
+
+        //component for common enemy behaviors
+        Q.component("commonEnemy", {
+            added: function () {
+                var entity = this.entity;
+                entity.on("bump.left,bump.right,bump.bottom", function (collision) {
+                    if (collision.obj.isA("Player")) {
+                        collision.obj.damage();
+                    }
+                });
+                entity.on("bump.top", function (collision) {
+                    if (collision.obj.isA("Player")) {
+                        //make the player jump
+                        collision.obj.p.vy = -100;
+
+                        //kill enemy
+                        this.destroy();
+                    }
+                });
+            },
+
+        });
+
+
+        Q.Sprite.extend("GroundEnemy", {
+            init: function (p) {
+                this._super(p, { vx: -100, defaultDirection: "left" });
+                this.add("2d, aiBounce, commonEnemy");
+            },
+            step: function (dt) {
+                var dirX = this.p.vx / Math.abs(this.p.vx);
+                var ground = Q.stage().locate(this.p.x, this.p.y + this.p.h / 2 + 1, Q.SPRITE_DEFAULT);
+                var nextTile = Q.stage().locate(this.p.x + dirX * this.p.w / 2 + dirX, this.p.y + this.p.h / 2 + 1, Q.SPRITE_DEFAULT);
+
+                //if we are on ground and there is a cliff
+                if (!nextTile && ground) {
+                    if (this.p.vx > 0) {
+                        if (this.p.defaultDirection == "right") {
+                            this.p.flip = "x";
+                        }
+                        else {
+                            this.p.flip = false;
+                        }
+                    }
+                    else {
+                        if (this.p.defaultDirection == "left") {
+                            this.p.flip = "x";
+                        }
+                        else {
+                            this.p.flip = false;
+                        }
+                    }
+                    this.p.vx = -this.p.vx;
+                }
+            }
+        });
+
+        Q.Sprite.extend("VerticalEnemy", {
+            init: function (p) {
+                this._super(p, { vy: -100, rangeY: 200, gravity: 0 });
+                this.add("2d, commonEnemy");
+
+                this.p.initialY = this.p.y;
+            },
+            step: function (dt) {
+                if (this.p.y - this.p.initialY >= this.p.rangeY && this.p.vy > 0) {
+                    this.p.vy = -this.p.vy;
+                }
+                else if (-this.p.y + this.p.initialY >= this.p.rangeY && this.p.vy < 0) {
+                    this.p.vy = -this.p.vy;
+                }
+            }
+        });
+
+        Q.Sprite.extend("Coin", {
+            init: function (p) {
+                this._super(p, { asset: "coin.png" });
+            }
+        });
+
+        //setup level 1
+        Q.scene("level1", function (stage) {
+
+            var background = new Q.TileLayer({ dataAsset: "level1.tmx", layerIndex: 0, sheet: "tiles", tileW: 70, tileH: 70, type: Q.SPRITE_NONE });
+            stage.insert(background);
+
+            stage.collisionLayer(new Q.TileLayer({ dataAsset: "level1.tmx", layerIndex: 1, sheet: "tiles", tileW: 70, tileH: 70, type: Q.SPRITE_DEFAULT }));
+
+            var player = stage.insert(new Q.Player());
+
+            //level assets. format must be as shown: [[ClassName, params], .. ]
+            var levelAssets = [
+                ["GroundEnemy", { x: 14 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 9 * 90, y: 2 * 210, asset: "slime.png" }],
+                ["GroundEnemy", { x: 8 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 4 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 6 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 17 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 27 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 28 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 31 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 19 * 78, y: 6 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 6 * 40, asset: "slime.png" }],
+                ["GroundEnemy", { x: 25 * 70, y: 6 * 40, asset: "slime.png" }],
+
+
+                ["GroundEnemy", { x: 27 * 70, y: 16 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 25 * 70, y: 16 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 70, y: 16 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 22 * 70, y: 16 * 70, asset: "slime.png" }],
+                ["GroundEnemy", { x: 19 * 78, y: 16 * 90, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 19 * 90, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 23 * 55, asset: "slime.png" }],
+                ["GroundEnemy", { x: 25 * 70, y: 16 * 40, asset: "slime.png" }],
+
+
+                ["GroundEnemy", { x: 27 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 25 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 22 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 19 * 78, y: 16 * 190, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 19 * 190, asset: "slime.png" }],
+                ["GroundEnemy", { x: 32 * 70, y: 23 * 155, asset: "slime.png" }],
+                ["GroundEnemy", { x: 25 * 70, y: 16 * 140, asset: "slime.png" }],
+
+                ["GroundEnemy", { x: 17 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 60, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 8 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 12 * 70, y: 16 * 170, asset: "slime.png" }],
+                ["GroundEnemy", { x: 5 * 78, y: 16 * 190, asset: "slime.png" }],
+                ["GroundEnemy", { x: 5 * 78, y: 18 * 190, asset: "slime.png" }],
+                ["GroundEnemy", { x: 12 * 70, y: 19 * 190, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 70, y: 23 * 155, asset: "slime.png" }],
+                ["GroundEnemy", { x: 5 * 70, y: 16 * 140, asset: "slime.png" }],
+
+
+                ["GroundEnemy", { x: 17 * 70, y: 16 * 270, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 60, y: 16 * 270, asset: "slime.png" }],
+                ["GroundEnemy", { x: 8 * 70, y: 16 * 270, asset: "slime.png" }],
+                ["GroundEnemy", { x: 12 * 70, y: 16 * 270, asset: "slime.png" }],
+                ["GroundEnemy", { x: 9 * 78, y: 16 * 290, asset: "slime.png" }],
+                ["GroundEnemy", { x: 12 * 70, y: 19 * 290, asset: "slime.png" }],
+                ["GroundEnemy", { x: 15 * 70, y: 23 * 255, asset: "slime.png" }],
+                ["GroundEnemy", { x: 5 * 70, y: 16 * 240, asset: "slime.png" }],
+
+               ["VerticalEnemy", { x: 1400, y: 230, rangeY: 70, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1500, y: 270, rangeY: 70, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1900, y: 380, rangeY: 70, asset: "fly.png" }],
+
+                ["VerticalEnemy", { x: 770, y: 1000, rangeY: 100, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 383, y: 1400, rangeY: 310, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 770, y: 2050, rangeY: 70, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 880, y: 2050, rangeY: 40, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1880, y: 2070, rangeY: 80, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1800, y: 2250, rangeY: 40, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 2300, y: 2250, rangeY: 40, asset: "fly.png" }],
+
+                ["VerticalEnemy", { x: 1900, y: 2600, rangeY: 30, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1700, y: 2600, rangeY: 35, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1500, y: 2610, rangeY: 30, asset: "fly.png" }],
+
+                ["VerticalEnemy", { x: 180, y: 2020, rangeY: 60, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 770, y: 3040, rangeY: 65, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 620, y: 3030, rangeY: 60, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 535, y: 1000, rangeY: 70, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 440, y: 1450, rangeY: 35, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 120, y: 1200, rangeY: 70, asset: "fly.png" }],
+
+                ["VerticalEnemy", { x: 1900, y: 3100, rangeY: 30, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1700, y: 3130, rangeY: 55, asset: "fly.png" }],
+                ["VerticalEnemy", { x: 1430, y: 3330, rangeY: 60, asset: "fly.png" }],
+
+
+
+                ["Coin", { x: 610, y: 500 }],
+                ["Coin", { x: 650, y: 500 }],
+                ["Coin", { x: 690, y: 500 }],
+                ["Coin", { x: 430, y: 500 }],
+                ["Coin", { x: 470, y: 500 }],
+
+               ["Coin", { x: 9710, y: 170 }],
+                ["Coin", { x: 9750, y: 170 }],
+                ["Coin", { x: 9790, y: 170 }],
+                ["Coin", { x: 830, y: 170 }],
+                ["Coin", { x: 870, y: 170 }],
+
+                ["Coin", { x: 1210, y: 170 }],
+                ["Coin", { x: 1250, y: 170 }],
+                ["Coin", { x: 1290, y: 170 }],
+                ["Coin", { x: 1130, y: 170 }],
+                ["Coin", { x: 1170, y: 170 }],
+
+                ["Coin", { x: 1710, y: 170 }],
+                ["Coin", { x: 1550, y: 170 }],
+                ["Coin", { x: 1590, y: 170 }],
+                ["Coin", { x: 1630, y: 170 }],
+                ["Coin", { x: 1670, y: 170 }],
+
+                ["Coin", { x: 1910, y: 170 }],
+                ["Coin", { x: 1950, y: 170 }],
+                ["Coin", { x: 1990, y: 170 }],
+                ["Coin", { x: 1930, y: 170 }],
+                ["Coin", { x: 2070, y: 170 }],
+
+                 ["Coin", { x: 2010, y: 170 }],
+                ["Coin", { x: 2050, y: 170 }],
+                ["Coin", { x: 2090, y: 170 }],
+                ["Coin", { x: 2030, y: 170 }],
+                ["Coin", { x: 2170, y: 170 }],
+                    ["Coin", { x: 2010, y: 170 }],
+                ["Coin", { x: 2050, y: 180 }],
+                ["Coin", { x: 2090, y: 180 }],
+                ["Coin", { x: 2030, y: 180 }],
+                ["Coin", { x: 2170, y: 180 }],
+
+                ["Coin", { x: 2000, y: 470 }],
+                ["Coin", { x: 2010, y: 470 }],
+                ["Coin", { x: 2030, y: 470 }],
+                ["Coin", { x: 2200, y: 670 }],
+                ["Coin", { x: 2210, y: 670 }],
+                ["Coin", { x: 2220, y: 670 }],
+                ["Coin", { x: 2230, y: 670 }],
+                ["Coin", { x: 2240, y: 670 }],
+                ["Coin", { x: 2250, y: 670 }],
+                ["Coin", { x: 2260, y: 670 }],
+                ["Coin", { x: 2270, y: 670 }],
+                ["Coin", { x: 2280, y: 670 }],
+                ["Coin", { x: 2290, y: 670 }],
+                 ["Coin", { x: 2000, y: 470 }],
+                ["Coin", { x: 2010, y: 470 }],
+                ["Coin", { x: 2030, y: 470 }],
+                ["Coin", { x: 2200, y: 670 }],
+                ["Coin", { x: 2210, y: 670 }],
+                ["Coin", { x: 2220, y: 670 }],
+                ["Coin", { x: 2230, y: 670 }],
+                ["Coin", { x: 2240, y: 670 }],
+                ["Coin", { x: 2250, y: 670 }],
+                ["Coin", { x: 2260, y: 670 }],
+                ["Coin", { x: 2270, y: 670 }],
+                ["Coin", { x: 2280, y: 670 }],
+                ["Coin", { x: 2290, y: 670 }],
+                 ["Coin", { x: 2000, y: 470 }],
+                ["Coin", { x: 2010, y: 470 }],
+                ["Coin", { x: 2030, y: 470 }],
+                ["Coin", { x: 2300, y: 670 }],
+                ["Coin", { x: 2310, y: 670 }],
+                ["Coin", { x: 2320, y: 670 }],
+                ["Coin", { x: 2330, y: 670 }],
+                ["Coin", { x: 2340, y: 670 }],
+                ["Coin", { x: 2350, y: 670 }],
+                ["Coin", { x: 2360, y: 670 }],
+                ["Coin", { x: 2270, y: 670 }],
+                ["Coin", { x: 2280, y: 670 }],
+                ["Coin", { x: 2290, y: 670 }],
+
+                ["Coin", { x: 1280, y: 500 }],
+                ["Coin", { x: 1310, y: 500 }],
+                ["Coin", { x: 1330, y: 500 }],
+
+                  ["Coin", { x: 1280, y: 900 }],
+                ["Coin", { x: 1310, y: 900 }],
+                ["Coin", { x: 1330, y: 900 }],
+
+                  ["Coin", { x: 1220, y: 1385 }],
+                  ["Coin", { x: 1210, y: 1385 }],
+                  ["Coin", { x: 1200, y: 1385 }],
+                  ["Coin", { x: 1250, y: 1385 }],
+                  ["Coin", { x: 1230, y: 1385 }],
+                  ["Coin", { x: 1240, y: 1385 }],
+
+
+                 ["Coin", { x: 1280, y: 1500 }],
+                ["Coin", { x: 1310, y: 1500 }],
+                ["Coin", { x: 1330, y: 1500 }],
+
+                ["Coin", { x: 1280, y: 1800 }],
+                ["Coin", { x: 1310, y: 1850 }],
+                ["Coin", { x: 1330, y: 1900 }],
+
+                ["Coin", { x: 1530, y: 1950 }],
+                ["Coin", { x: 1590, y: 1950 }],
+                ["Coin", { x: 1630, y: 1950 }],
+
+                ["Coin", { x: 1530, y: 2920 }],
+                ["Coin", { x: 1590, y: 2900 }],
+                ["Coin", { x: 1630, y: 2910 }],
+
+                ["Coin", { x: 1230, y: 2920 }],
+                ["Coin", { x: 1290, y: 2900 }],
+                ["Coin", { x: 1260, y: 2910 }],
+
+                ["Coin", { x: 130, y: 3220 }],
+                ["Coin", { x: 190, y: 3200 }],
+                ["Coin", { x: 160, y: 3210 }],
+
+                ["Coin", { x: 110, y: 2920 }],
+                ["Coin", { x: 110, y: 2890 }],
+                ["Coin", { x: 110, y: 2860 }],
+                ["Coin", { x: 110, y: 2830 }],
+
+                ["Coin", { x: 90, y: 1920 }],
+                ["Coin", { x: 90, y: 1890 }],
+                ["Coin", { x: 90, y: 1860 }],
+                ["Coin", { x: 90, y: 1830 }],
+                   ["Coin", { x: 90, y: 1920 }],
+                ["Coin", { x: 90, y: 1890 }],
+                ["Coin", { x: 90, y: 1860 }],
+                ["Coin", { x: 90, y: 1830 }],
+                   ["Coin", { x: 90, y: 1920 }],
+                ["Coin", { x: 90, y: 1890 }],
+                ["Coin", { x: 90, y: 1860 }],
+                ["Coin", { x: 90, y: 1830 }],
+
+                ["Coin", { x: 1530, y: 3400 }],
+                ["Coin", { x: 1590, y: 3400 }],
+                ["Coin", { x: 1830, y: 3400 }],
+
+            ];
+
+            //load level assets
+            stage.loadAssets(levelAssets);
+
+            stage.add("viewport").follow(player, { x: true, y: true }, { minX: 0, maxX: background.p.w, minY: 0, maxY: background.p.h });
+
+        });
+
+        Q.scene("endGame", function (stage) {
+            alert("Game over! Try agen?");
+            window.location = "";
+        });
+
+        Q.scene("gameStats", function (stage) {
+            var statsContainer = stage.insert(new Q.UI.Container({
+                fill: "gray",
+                x: 960 / 2,
+                y: 620,
+                border: 1,
+                shadow: 3,
+                shadowColor: "rgba(0,0,0,0.5)",
+                w: 960,
+                h: 40
+            })
+            );
+
+            var lives = stage.insert(new Q.UI.Text({
+                label: "Power 3/3",
+                color: "white",
+                x: -300,
+                y: 0
+            }), statsContainer);
+
+            var coins = stage.insert(new Q.UI.Text({
+                label: "Judge exam points: 0/100",
+                color: "white",
+                x: 300,
+                y: 0
+            }), statsContainer);
+
+
+        });
+
+        //load assets
+        Q.load("tiles_map.png, player.png, slime.png, fly.png, level1.tmx, coin.png", function () {
+            Q.sheet("tiles", "tiles_map.png", { tilew: 70, tileh: 70 });
+            Q.stageScene("level1");
+            Q.stageScene("gameStats", 1);
+        });
+
+
+    </script>
+    <audio autoplay loop>
+        <source src="data/music_level1.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+</body>
+</html>
