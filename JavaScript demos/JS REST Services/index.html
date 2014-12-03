@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>App-Books</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+
+<body>
+
+<h1>SoftUni HomeWork: "Достъпване на отдалечени данни" </h1>
+
+    <form id="creatMenu">
+        <input type="text" id="title" placeholder="insert Book Title..." />
+        <input type="text" id="author" placeholder="insert Book Author..." />
+        <input type="text" id="ISBN" placeholder="insert Book ISBN..." />
+        <input type="button" id="buttonCreateBook" value="Create a Book" />
+    </form>
+
+    <form id="editMenu">
+        <input type="text" id="titleForEdit" placeholder="EDIT Title..." />
+        <input type="text" id="authorForEdit" placeholder="EDIT Author..." />
+        <input type="text" id="ISBNForEdit" placeholder="EDIT ISBN number..." />
+        <input type="button" id="buttonSendEditBook" value="Send edited Book" />
+    </form>
+
+    <div id="wrapper"></div>
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="libs/jquery.noty.packaged.min.js"></script>
+    <script type="text/javascript" src="js/ajax-requester.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

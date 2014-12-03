@@ -1,0 +1,2 @@
+$("#editMenu").hide();
+loadAllBooksFromServer();
