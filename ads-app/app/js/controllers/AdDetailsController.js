@@ -6,7 +6,8 @@ adsApp.controller("AdDetailsController",
             descriptionAd: "I have iPhone 4S 16GB for sale. Good price. Like a new. Please call me in the evenings or at weekends.",
             authorName: "Victor",
             mail: "igra4a@abv.bg",
-            phone: "+ 359 555 44 33 22"
+            phone: "+ 359 555 44 33 22",
+            image: "img/phone.jpg"
         };
 
         $scope.ad = ad;

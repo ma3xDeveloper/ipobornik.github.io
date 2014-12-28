@@ -49,7 +49,13 @@
         </div>
 
         <div class="container" ng-controller="AdDetailsController">
-            <h1>{{ad.titleAd}}</h1>
+            <div class="col-md-6">
+                <h2>{{ad.titleAd}}</h2>
+                <p>{{ad.dateOfCreation}}</p>
+            </div>  
+            <div class="col-md-6 imagecontainer">
+                <img src="{{ad.image}}">
+            </div>
         </div>
 
     </footer>
