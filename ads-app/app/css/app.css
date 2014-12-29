@@ -1,17 +1,53 @@
-.imagecontainer img {
-	width: 35%;
-	height: 35%;
-	padding: 0.5em;
-
-} 
-
-footer {
-	margin-top: 2em;
-	padding: 1em;
-	background-color: #DFDFDF;
+body {
+    margin: 0;
+    padding: 0;
 }
-
+a {
+    color: #FAF556;
+}
+header {
+    background-color: #BD0404;
+    color: #FFFFFF;
+    padding: 1.3em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+footer {
+    margin-top: 2em;
+    padding: 0.3em;
+    color: #FFFFFF;
+    background-color: #BD0404;
+    text-align: center;
+}
+#wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+#main {
+    width: 60%;
+    background-color: #FFDDDD;
+    float: left;
+}
+#navigation {
+    width: 30%;
+    background-color: #781414;
+    color: #FFFFFF;
+    float: right;
+}
+#main, #navigation {
+    padding: 1em;
+}
+.clearfix {
+    clear: both;
+}
+.imagecontainer img {
+    width: 30%;
+    height: 30%;
+    padding: 0.5em;
+    margin-right: 1em;
+    float: left;
+}
 .adbox {
-		margin: 0.5em;
-	padding: 0.5em;
+    margin: 0.5em;
+    padding: 0.5em 0 1em 0;
 }
