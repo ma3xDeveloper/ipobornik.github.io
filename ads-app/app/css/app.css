@@ -6,7 +6,7 @@ a {
     color: #FAF556;
 }
 header {
-    background-color: #BD0404;
+    background-color: #1298AF;
     color: #FFFFFF;
     padding: 1.3em;
     margin-bottom: 2em;
@@ -16,7 +16,7 @@ footer {
     margin-top: 2em;
     padding: 0.3em;
     color: #FFFFFF;
-    background-color: #BD0404;
+    background-color: #1298AF;
     text-align: center;
 }
 #wrapper {
@@ -25,12 +25,12 @@ footer {
 }
 #main {
     width: 60%;
-    background-color: #FFDDDD;
+    background-color: #DFF0FD;
     float: left;
 }
 #navigation {
     width: 30%;
-    background-color: #781414;
+    background-color: #14353D;
     color: #FFFFFF;
     float: right;
 }
