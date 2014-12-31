@@ -1,18 +1,21 @@
- adsApp.factory("adsData", function($http) {
+ adsApp.factory("adsData", function($http, $q) {
 
      return {
-         getAd: function(id, successcb) {
+         getAd: function(id) {
+
+         	var defer = $q.defer();
              $http({
                      method: "GET",
                      url: "/app/data/" + id
                  })
                  .success(function(data, status, headers, confic) {
-                     successcb(data);
-                     /*TODO LOGS*/
+                    defer.resolve(data);
                  })
                  .error(function(data, status, headers, confic) {
-                     /*TODO LOGS*/
+                    defer.reject(data);
                  });
+
+            return defer.promise;     
          }
 
      }
