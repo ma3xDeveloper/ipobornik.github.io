@@ -1,5 +1,9 @@
 adsApp.controller("AdDetailsController",
     function AdDetailsController($scope, adsData) {
-    
-        $scope.ad = adsData.getAd;
+
+        adsData.getAd("data.json", function(data) {
+                $scope.ad = data;
+            }
+
+        );
     });

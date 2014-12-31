@@ -1,17 +1,21 @@
- adsApp.factory("adsData",
-     function() {
-     	    var ad = {
-            titleAd: "iPhone 4S",
-            dateOfCreation: "3-Jan-2015",
-            descriptionAd: "I have iPhone 4S 16GB for sale. Good price. Like a new. Please call me in the evenings or at weekends.",
-            authorName: "Victor",
-            mail: "igra4a@abv.bg",
-            phone: "+ 359 555 44 33 22",
-            image: "img/phone.jpg"
-        };
+ adsApp.factory("adsData", function($http) {
 
-        return {
-        	getAd : ad
-        };
+     return {
+         getAd: function(id, successcb) {
+             $http({
+                     method: "GET",
+                     url: "/app/data/" + id
+                 })
+                 .success(function(data, status, headers, confic) {
+                     successcb(data);
+                     /*TODO LOGS*/
+                 })
+                 .error(function(data, status, headers, confic) {
+                     /*TODO LOGS*/
+                 });
+         }
 
-     });
+     }
+
+
+ });
