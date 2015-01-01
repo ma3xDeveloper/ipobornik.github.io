@@ -1,1 +1,1 @@
-var adsApp = angular.module("adsApp", []);
+var adsApp = angular.module("adsApp", ["ngResource"]);
