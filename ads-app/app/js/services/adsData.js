@@ -1,8 +1,8 @@
  adsApp.factory("adsData", function($resource) {
 
-     var resource = $resource("/app/data/:id", {
+     var resource = $resource("http://softuni-ads.azurewebsites.net/api/ads", {
          id: "@id"
-     })
+     });
 
      return {
          getAd: function(id) {
@@ -17,7 +17,7 @@
              resource.save(ad);
          }
 
-     }
+     };
 
 
  });
