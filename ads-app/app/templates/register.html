@@ -1,0 +1,29 @@
+<div id="wrapper">
+    <h2>re...</h2>
+    <form>
+    	<label for="username">Username</label>
+    <input type="text" name="username"  ng-model="userTempObj.username"/>
+    <br>
+    <label for="password">Password</label>
+    <input type="password" name="password" ng-model="userTempObj.password" />
+    <br>
+    <label for="confirmpassword">Confirm Password</label>
+    <input type="password" name="confirmpassword" />
+    <br>
+    <label for="nameOwner">name Owner</label>
+    <input type="text" name="nameOwner"  ng-model="userTempObj.nameOwner"/>
+    <br>
+    <label for="phone">phone</label>
+    <input type="text" name="phone"  ng-model="userTempObj.phone"/>
+    <br>
+    <label for="email">email</label>
+    <input type="text" name="email"  ng-model="userTempObj.email"/>
+    <br>
+    <label for="townSelect">town</label>
+    <select id="townSelect" ng-options="town.id as town.name for town in towns"
+        ng-model="userTempObj.townId">
+    </select>
+<input type="button" value="register" ng-click="register(userTempObj)">
+<input type="button" value="cansel">
+    </form>
+</div>

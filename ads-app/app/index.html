@@ -4,77 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <title>AdsApp</title>
-    <!--  <link rel="stylesheet" type="text/css" href="/app/lib/bootstrap-3.3.1/css/bootstrap.css" />
-   <link rel="stylesheet" type="text/css" href="/app/lib/bootstrap-3.3.1/css/bootstrap-theme.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/app/lib/bootstrap-3.3.1/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/app/lib/bootstrap-3.3.1/css/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="/app/css/app.css" />
 </head>
 
-<body ng-app="adsApp" ng-controller="PageController">
+<body ng-app="adsApp">
 
-    <header>
-        Ads - Home
-        <span>
-        	<a href="#/edit-ad">Edit</a>
-        	<a href="#/details">Details</a>
-        </span>
-    </header>
-
-    <div id="wrapper">
-        <div id="main" ng-view>
-			  
-        </div>
-
-
-
-        <div id="navigation">
-            <div id="categories">
-                <span>Categories</span>
-                <ul>
-                    <li>kategoria</li>
-                    <li>kategoria</li>
-                    <li>kategoria</li>
-                    <li>kategoria</li>
-                </ul>
-            </div>
-
-            <div id="towns">
-                <span>Towns</span>
-                <ul>
-                    <li>Gradove</li>
-                    <li>Gradove</li>
-                    <li>Gradove</li>
-                    <li>Gradove</li>
-                </ul>
-            </div>
-
-            <div id="sign">
-                <span>Sign in</span>
-                <br>
-                <a href="#">Login</a>
-                <br>
-                <a href="#">Regiser</a>
-            </div>
-        </div>
+    <div ng-view>
     </div>
 
-    <div class="clearfix"></div>
 
 
-    <footer>
-
+    <footer ng-controller="PageController">
         <p>Made by <a href="http://thomaspark.me" rel="nofollow">Matrix</a> - <a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;"> Blog</a>, <a href="https://github.com/thomaspark/bootswatch/"> GitHub</a>. {{footerinfo}}</p>
     </footer>
 
     <script type="text/javascript" src="/app/lib/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="/app/lib/bootstrap-3.3.1/js/bootstrap.js"></script>
+
     <script type="text/javascript" src="/app/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/app/lib/angular/angular-resource.js"></script>
     <script type="text/javascript" src="/app/lib/angular/angular-route.js"></script>
 
     <script type="text/javascript" src="/app/js/app.js"></script>
+    <script type="text/javascript" src="/app/js/directives/left-sidebar.js"></script>
+
+    <script type="text/javascript" src="/app/js/services/townsData.js"></script>
+
     <script type="text/javascript" src="/app/js/controllers/PageController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/HomeController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/RegisterController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/EditAdController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/AdDetailsController.js"></script>
-    <script type="text/javascript" src="/app/js/services/adsData.js"></script>
 
 </body>
 
