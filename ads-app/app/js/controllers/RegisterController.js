@@ -1,5 +1,5 @@
  adsApp.controller("RegisterController", 
- 	function RegisterController($scope, townsData){
+ 	function RegisterController($scope, townsData, userData){
  	
  	townsData.getTowns()
  		.$promise
@@ -8,8 +8,7 @@
  		});
 
  	$scope.register= function(user){
- 		console.log(user);
- 		//userData.register(user);
+ 		userData.register(user);
  	};
  });
 

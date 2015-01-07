@@ -1,5 +1,5 @@
 adsApp.directive("leftPublicSidebar", function(){
-console.log("leftPublic");
+
 		return {
 			restrict: "E",
 			controller: "HomeController",

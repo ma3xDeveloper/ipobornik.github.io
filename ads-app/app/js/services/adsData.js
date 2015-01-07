@@ -1,23 +1,45 @@
- adsApp.factory("adsData", function($resource) {
+ adsApp.factory("adsData", function($resource, baseServiceUrl) {
 
-     var resource = $resource("http://softuni-ads.azurewebsites.net/api/ads", {
-         id: "@id"
+     var resource = $resource(baseServiceUrl + "ads:adsId", {
+         adsId: "@id"
+     }, {
+         update: {
+             method: "PUT"
+         }
      });
 
+
+     function getPublicAds() {
+         return resource.get();
+     }
+
+     function editAd(adId, ad) {
+         return resource.update({
+             id: adId
+         }, ad);
+     }
+
+     function getAdById(adId) {
+         return resource.get({
+             id: adId
+         });
+     }
+
+     function postAd(ad) {
+         return resource.save(ad);
+     }
+
+     function deleteAd(adId) {
+         return resource.delete({
+             id: adId
+         });
+     }
+
      return {
-         getAd: function(id) {
-             return resource.get({
-                 id: id
-             });
-
-         },
-         saveAd: function(ad) {
-             ad.id = 55;
-             console.log(ad);
-             resource.save(ad);
-         }
-
+         getPublicAds: getPublicAds,
+         editAd: editAd,
+         getAdById: getAdById,
+         postAd: postAd,
+         deleteAd: deleteAd
      };
-
-
  });

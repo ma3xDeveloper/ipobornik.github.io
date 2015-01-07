@@ -2,12 +2,12 @@
 
      var resource = $resource(baseServiceUrl + "towns");
 
-     function getAllTowns() {
+     function getTowns() {
      	return resource.query();
-     };
+     }
 
      return {
-         getTowns: getAllTowns
+         getTowns: getTowns
 
      };
 

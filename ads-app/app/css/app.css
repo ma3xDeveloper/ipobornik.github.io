@@ -69,3 +69,12 @@ input.ng-valid.ng-dirty.form-validation {
 h2  {
    color: #408080;
 }
+#loadingimage {
+    width: 190px;
+    vertical-align: center;
+}
+
+.navcategoies {
+    font-weight: bolder;
+    color: red;
+}

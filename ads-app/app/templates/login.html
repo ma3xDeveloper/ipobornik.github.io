@@ -1,8 +1,10 @@
 <div id="wrapper">
     <h2>Lo....</h2>
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="user">
+    <input type="text" name="username" placeholder="user" ng-model="userLoginTempObj.username">
     <br>
     <label for="password">Password</label>
-    <input type="password" name="password" placeholder="pass">
+    <input type="password" name="password" placeholder="pass" ng-model="userLoginTempObj.password">
+    <input type="button" value="submit" ng-click="login(userLoginTempObj)">
+    <input type="button" value="cansel">
 </div>

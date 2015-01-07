@@ -1,6 +1,6 @@
 var adsApp = angular
-    .module("adsApp", ["ngResource", "ngRoute"])
-    .config(function($routeProvider) {
+    .module("adsApp", ["ngResource", "ngRoute", "LocalStorageModule"])
+    .config(function($routeProvider, localStorageServiceProvider) {
         $routeProvider
             .when("/home", {
                 templateUrl: "app/templates/home.html",
@@ -25,6 +25,10 @@ var adsApp = angular
             .otherwise({
                 redirectTo: "/home"
             });
+
+            // Adding user to Web Storage
+            localStorageServiceProvider.setStorageType("localStorage");
+            localStorageServiceProvider.setPrefix("adsApp");
 
     });
 

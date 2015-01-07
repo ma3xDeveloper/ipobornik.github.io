@@ -15,7 +15,6 @@
     </div>
 
 
-
     <footer ng-controller="PageController">
         <p>Made by <a href="http://thomaspark.me" rel="nofollow">Matrix</a> - <a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;"> Blog</a>, <a href="https://github.com/thomaspark/bootswatch/"> GitHub</a>. {{footerinfo}}</p>
     </footer>
@@ -26,11 +25,20 @@
     <script type="text/javascript" src="/app/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/app/lib/angular/angular-resource.js"></script>
     <script type="text/javascript" src="/app/lib/angular/angular-route.js"></script>
+    <script type="text/javascript" src="/app/lib/angular-local-storage.js"></script>
 
     <script type="text/javascript" src="/app/js/app.js"></script>
-    <script type="text/javascript" src="/app/js/directives/left-sidebar.js"></script>
+
+    <script type="text/javascript" src="/app/js/directives/leftpublic-sidebar.js"></script>
+    <script type="text/javascript" src="/app/js/directives/public-ads-list.js"></script>
+    <script type="text/javascript" src="/app/js/directives/towns.js"></script>
+    <script type="text/javascript" src="/app/js/directives/category.js"></script>
 
     <script type="text/javascript" src="/app/js/services/townsData.js"></script>
+    <script type="text/javascript" src="/app/js/services/userData.js"></script>
+    <script type="text/javascript" src="/app/js/services/adsData.js"></script>
+    <script type="text/javascript" src="/app/js/services/categoryData.js"></script>
+    <script type="text/javascript" src="/app/js/services/avtent.js"></script>
 
     <script type="text/javascript" src="/app/js/controllers/PageController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/HomeController.js"></script>
@@ -38,6 +46,10 @@
     <script type="text/javascript" src="/app/js/controllers/RegisterController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/EditAdController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/AdDetailsController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/PublicAdsListController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/TownsListController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/CategoryListController.js"></script>
+
 
 </body>
 
