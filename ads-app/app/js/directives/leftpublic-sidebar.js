@@ -2,7 +2,7 @@ adsApp.directive("leftPublicSidebar", function(){
 
 		return {
 			restrict: "E",
-			controller: "HomeController",
+			controller: "AdsAppController",
 			templateUrl: "app/templates/left-public-sidebar.html",
 			replace: true
 		};

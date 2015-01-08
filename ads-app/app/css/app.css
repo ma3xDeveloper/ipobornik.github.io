@@ -1,12 +1,20 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 16px;
+}
+h3 {
+    color: #404040;
 }
 a {
-    color: #E16F83;
+    color: #E0BB3A;
+}
+li {
+    list-style-type: none;
 }
 header {
-    background-color: #1298AF;
+    background-color: #000000;
     color: #FFFFFF;
     padding: 1.3em;
     margin-bottom: 2em;
@@ -17,64 +25,58 @@ footer {
     margin-top: 2em;
     padding: 0.3em;
     color: #FFFFFF;
-    background-color: #1298AF;
+    background-color: #000000;
     text-align: center;
     box-shadow: 2px 2px 3px #888888;
 }
 #wrapper {
-    width: 1028px;
-    margin: 0 auto;
+    background-color: #F4F4F4;
 }
-#main {
-    background-color: #DFF0FD;
+#display-ads-container {
+    background-color: #E5E5E5;
+    padding: 0.3em;
+}
+#towns-sidebar-container, #categories-sidebar-container, #signbar-container {
+    background-color: #E5E5E5;
+    padding: 0.3em;
+}
+#signbar-container a {
+    color: #BA2207;
+    font-weight: bold;
+}
+.nav-section-titels {
+    font-family: verdana, sans-serif;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #D16B10;
+}
+.userpanel {
+    font-family: "Times New Roman", sans-serif;
+    color: #9E9E9E;
+}
+/* .adbox {
+    margin: 0.5em;
+    padding: 0.5em 0 1em 0;
+} */
+/* VALIDATION */
+/* input.ng-invalid.ng-dirty.form-validation {
+    background-color: #FF8080;
+}
+input.ng-valid.ng-dirty.form-validation {
+    background-color: #8BF788;
+} */
+/* IMAGES */
 
+#loadingimage {
+    width: 200px;
 }
-.navigation {
-    background-color: #14353D;
-    color: #FFFFFF;
-}
-#main, .navigation {
-    padding: 1em;
-}
-
-.imagecontainer img {
+/* .imagecontainer img {
     width: 30%;
     height: 30%;
     padding: 0.5em;
     margin-right: 1em;
     float: left;
-}
-.adbox {
-    margin: 0.5em;
-    padding: 0.5em 0 1em 0;
-}
-
-input.ng-invalid.ng-dirty.form-validation {
-    background-color: #FF8080;
-}
-input.ng-valid.ng-dirty.form-validation {
-    background-color: #8BF788;
-}
-
-#the-image-preview {
+} */
+/* #the-image-preview {
     width: 300px;
-}
-
-.nav-section-titels {
-    font-family: verdana, sans-serif;
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-
-h2  {
-   color: #408080;
-}
-#loadingimage {
-    width: 190px;
-    vertical-align: center;
-}
-
-.navcategoies {
-    font-weight: bolder;
-    color: red;
-}
+} */

@@ -1,7 +1,7 @@
 <div id="categories-sidebar-container">
-<div class="navcategoies">CATEGORIES: </div>
+<div class="nav-section-titels">CATEGORIES: </div>
 	<ul>
-        <li ng-repeat="category in categories">
+        <li ng-repeat="category in categories" ng-click="categoryClicked(category)">
             {{category.name}}
         </li>
     </ul>

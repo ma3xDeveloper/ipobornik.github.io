@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="adsApp" ng-controller="AdsAppController">
 
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,23 @@
     <link rel="stylesheet" type="text/css" href="/app/css/app.css" />
 </head>
 
-<body ng-app="adsApp">
+<body>
+
+    <header ng-Cloak>
+        <h3>{{headerTitle}}</h3>
+    </header>
 
     <div ng-view>
     </div>
 
 
-    <footer ng-controller="PageController">
-        <p>Made by <a href="http://thomaspark.me" rel="nofollow">Matrix</a> - <a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;"> Blog</a>, <a href="https://github.com/thomaspark/bootswatch/"> GitHub</a>. {{footerinfo}}</p>
+    <footer>
+        <p>Made by Matrix - <a href="http://thecodeistrueorfalse.wordpress.com/"> Blog</a>, <a href="https://github.com/ipobornik"> GitHub</a>. {{footerinfo}}</p>
     </footer>
 
     <script type="text/javascript" src="/app/lib/jquery-2.1.3.js"></script>
     <script type="text/javascript" src="/app/lib/bootstrap-3.3.1/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/app/lib/jquery.noty.packaged.min.js"></script>
 
     <script type="text/javascript" src="/app/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/app/lib/angular/angular-resource.js"></script>
@@ -38,18 +43,17 @@
     <script type="text/javascript" src="/app/js/services/userData.js"></script>
     <script type="text/javascript" src="/app/js/services/adsData.js"></script>
     <script type="text/javascript" src="/app/js/services/categoryData.js"></script>
-    <script type="text/javascript" src="/app/js/services/avtent.js"></script>
-
-    <script type="text/javascript" src="/app/js/controllers/PageController.js"></script>
+    <script type="text/javascript" src="/app/js/services/authent.js"></script>
+    <script type="text/javascript" src="/app/js/services/filter.js"></script>
+    <!--     <script type="text/javascript" src="/app/js/services/notifyService.js"></script>
+ -->
+    <script type="text/javascript" src="/app/js/controllers/AdsAppController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/HomeController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/LoginController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/RegisterController.js"></script>
-    <script type="text/javascript" src="/app/js/controllers/EditAdController.js"></script>
-    <script type="text/javascript" src="/app/js/controllers/AdDetailsController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/PublicAdsListController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/TownsListController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/CategoryListController.js"></script>
-
 
 </body>
 

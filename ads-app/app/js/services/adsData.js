@@ -9,8 +9,8 @@
      });
 
 
-     function getPublicAds() {
-         return resource.get();
+     function getPublicAds(filterParams) {
+         return resource.get(filterParams);
      }
 
      function editAd(adId, ad) {
