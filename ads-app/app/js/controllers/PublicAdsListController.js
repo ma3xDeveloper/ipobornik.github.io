@@ -17,9 +17,5 @@
          $scope.$on("categoryClicked", function(event, category) {
              loadPublicAds(filter.getFilterParams());
          });
-         
-         $scope.$on("townClicked", function(event, category) {
-             loadPublicAds(filter.getFilterParams());
-         });
 
      });
