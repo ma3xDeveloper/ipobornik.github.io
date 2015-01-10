@@ -2,7 +2,7 @@ adsApp.directive("leftLoggedUserSidebar", function(){
 
 		return {
 			restrict: "E",
-			controller: "LoggedInSidebarController",
+			controller: "LoginController",
 			templateUrl: "app/templates/leftloggeduser-sidebar.html",
 			replace: true
 		};

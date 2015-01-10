@@ -1,4 +1,7 @@
- adsApp.factory("adsData", function($resource, baseServiceUrl) {
+ adsApp.factory("adsData", function($resource, $http, authent, baseServiceUrl) {
+
+    var token = authent.getHeaders();
+    $http.defaults.headers.common.Authorization = "Bearer " + token;
 
      var resource = $resource(baseServiceUrl + "ads:adsId", {
          adsId: "@id"

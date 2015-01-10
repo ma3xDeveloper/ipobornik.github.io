@@ -1,4 +1,4 @@
- adsApp.factory("avtent", function() {
+ adsApp.factory("authent", function($location) {
      var key = "user";
 
      function saveUserData(data) {
@@ -16,14 +16,22 @@
          var userData = getUserData();
          if (userData) {
              headers.Authorization = "Bearer " + getUserData().access_token;
-
          }
-
          return headers;
      }
 
-     function removeUser() {
+     function getUsername() {
+         var currentuser = {};
+         var userData = getUserData();
+         if (userData) {
+             currentuser.username = getUserData().username;
+         }
+         return currentuser;
+     }
+
+     function removeUser(key) {
          localStorage.removeItem(key);
+         $location.path("/");
      }
 
      function isAdmin() {
@@ -43,7 +51,8 @@
          getHeaders: getHeaders,
          removeUser: removeUser,
          isAdmin: isAdmin,
-         isLoggedIn: isLoggedIn
+         isLoggedIn: isLoggedIn,
+         getUsername: getUsername
      };
 
 

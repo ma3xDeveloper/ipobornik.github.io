@@ -1,8 +1,21 @@
-<div id="public-ads-container">
-	<img id="loadingimage" src="/app/img/loading.gif" alt="loading image" ng-hide="ready">
-	<ul ng-cloak>
-		<li ng-repeat="ad in adsData.ads">
-			{{ad.title}}
-		</li>
-	</ul>
+<div id="display-ads-container">
+    <img id="loadingimage" src="/app/img/loading.gif" alt="loading image" ng-hide="ready">
+    <ul ng-cloak>
+        <li ng-repeat="ad in adsData.ads">
+            <span>------------</span>
+            <div ng-if='ad.imageDataUrl'>
+                <strong>Image:</strong>
+                <img class="imagecontainer" ng-src="{{ad.imageDataUrl}}" />       </div>
+            <h4>{{ad.title}}</h4>
+            <div><strong>Date:</strong> {{ad.date | date:'dd-MMM-yyyy'}}</div>
+           	<div><span><strong>Description:</strong> </span>{{ad.text}}</div>
+           	<div><span><strong>Name:</strong> </span>{{ad.ownerName}}</div>
+           	<div><span><strong>Email:</strong> </span>{{ad.ownerEmail}}</div>
+           	<div><span><strong>Phone:</strong> </span>{{ad.ownerPhone}}</div>
+        </li>
+    </ul>
+
+    <div ng-if="ads.ads.length==0">
+        No ads found.
+    </div>
 </div>

@@ -1,0 +1,104 @@
+<div id="wrapper">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3 class="margin-0">Publish New Ad</h3>
+            </div>
+            <div class="panel-body margin-bottom-0">
+                <form class="form-horizontal well bs-component margin-bottom-0" name="publishAd">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    <label for="title" class="col-xs-2 control-label">Title*</label>
+                                    <div class="col-xs-10">
+                                        <div class="row">
+                                            <div class="col-xs-10">
+                                                <input type="text" class="form-control" ng-model="newAdObj.title" name="title" placeholder="Title" required>
+                                            </div>
+                                            <div class="col-xs-2">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="text" class="col-xs-2 control-label">Text*</label>
+                                    <div class="col-xs-10">
+                                        <div class="row">
+                                            <div class="col-xs-10">
+                                                <textarea class="form-control" rows="7" ng-model="newAdObj.text" name="text" placeholder="Ad's text" required></textarea>
+                                            </div>
+                                            <div class="col-xs-2">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-center" id="ad-image"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    <label for="imageDataUrl" class="col-xs-2 control-label">Image</label>
+                                    <div class="col-xs-10">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" id="imageName" placeholder="Image url" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    <label for="category" class="col-xs-2 control-label">Category</label>
+                                    <div class="col-xs-10">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <!-- <select class="form-control" name="category" ng-model="newAdObj.categoryId">
+                                                        <option value="null">None</option>
+                                                        <option value="{{category.id}} " ng-repeat="category in categories">{{category.name}}</option>
+                                                    </select> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="#/home" class="btn btn-info col-xs-12">Cancel</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="form-group">
+                                    <label for="town" class="col-xs-2 control-label">Town</label>
+                                    <div class="col-xs-10">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <!--     <select class="form-control" name="town" ng-model="newAdObj.townId">
+                                                    <option value="null">None</option>
+                                                    <option value="{{town.id}} " ng-repeat="town in towns">{{town.name}}</option>
+                                                </select> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                             
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <div id="towns-sidebar-container">
-<div class="navcategoies">TOWNS: </div>
+<div class="nav-section-titels">TOWNS: </div>
     <ul>
-        <li ng-repeat="town in towns">
+        <li ng-repeat="town in towns" ng-click="townClicked(town)">
             {{town.name}}
         </li>
     </ul>

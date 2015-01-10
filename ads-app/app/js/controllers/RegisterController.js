@@ -7,8 +7,9 @@
  			$scope.towns = data;
  		});
 
- 	$scope.register= function(user){
- 		userData.register(user);
+ 	$scope.register= function(){
+ 		console.log("register invoked");
+ 		
  	};
  });
 

@@ -4,15 +4,19 @@ var adsApp = angular
         $routeProvider
             .when("/home", {
                 templateUrl: "app/templates/home.html",
-                controller: "HomeController"
+                controller: "AdsAppController"
             })
-            .when("/edit-ad", {
-                templateUrl: "app/templates/edit-ad.html",
-                controller: "LoginController"
+            .when("/myads", {
+                templateUrl: "app/my-ads.html",
+                controller: "?"
             })
-            .when("/details", {
-                templateUrl: "app/templates/details.html",
-                controller: "HomeController"
+            .when("/publish", {
+                templateUrl: "app/templates/publichnewad.html",
+                controller: "PublishNewAdController"
+            }) 
+            .when("/editprofile", {
+                templateUrl: "app/templates/edit-profile.html",
+                controller: "?"
             })
             .when("/login", {
                 templateUrl: "app/templates/login.html",
