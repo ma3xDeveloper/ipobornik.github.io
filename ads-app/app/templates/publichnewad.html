@@ -2,17 +2,17 @@
     <h2>re...</h2>
     <form>
         <label for="title">Titel*</label>
-        <input type="text" name="title" ng-model="newAdObj.title" />
+        <input type="text" id="title" ng-model="newAdObj.title" />
         <br>
 
         <label for="text">Text*</label>
-        <textarea rows="7" name="text" placeholder="Ad's text" ng-model="newAdObj.text"></textarea>
+        <textarea rows="7" id="text" ng-model="newAdObj.text"></textarea>
         <br>
         <!--   <label for="image">Image</label>
-      <input type="text" name="image" ng-model="newAdObj.imageDataUrl" />
+      <input type="text" id="image" ng-model="newAdObj.imageDataUrl" />
       <br>
       <label for="category">Category</label>
-      <input type="text" name="category" ng-model="newAdObj.categoryId" />
+      <input type="text" id="category" ng-model="newAdObj.categoryId" />
       <br>
       <label for="town">Town</label>
       <select id="town" ng-options="town.id as town.name for town in towns" ng-model="newAdObj.townId">

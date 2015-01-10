@@ -1,8 +1,5 @@
  adsApp.factory("adsData", function($resource, $http, authent, baseServiceUrl) {
 
-    var token = authent.getHeaders();
-    $http.defaults.headers.common.Authorization = "Bearer " + token;
-
      var resource = $resource(baseServiceUrl + "ads:adsId", {
          adsId: "@id"
      }, {
@@ -28,9 +25,29 @@
          });
      }
 
+     /* function postAd(ad) {
+          return resource.save(ad);
+      }*/
+
      function postAd(ad) {
-         return resource.save(ad);
+         var user = authent.getUserData();
+
+         var adsResource = $resource(
+             baseServiceUrl + 'user/ads',
+             null, {
+                 'publishAd': {
+                     method: 'POST',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     },
+                     data: ad
+                 }
+             }
+         );
+
+         return adsResource.publishAd(ad);
      }
+
 
      function deleteAd(adId) {
          return resource.delete({

@@ -47,7 +47,7 @@
 
      return {
          saveUser: saveUserData,
-         getUser: getUserData,
+         getUserData: getUserData,
          getHeaders: getHeaders,
          removeUser: removeUser,
          isAdmin: isAdmin,
