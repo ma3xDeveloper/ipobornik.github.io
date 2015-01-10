@@ -9,9 +9,34 @@
      });
 
 
-     function getPublicAds(filterParams) {
+     function getPublicAdsWithParams(filterParams) {
          return resource.get(filterParams);
      }
+
+   /*  function getPublicAdsWithOUTParams() {
+         var url = baseServiceUrl + 'ads?CategoryId=' + "" +
+             '&TownId=' + "" +
+             '&StartPage=' + 1 +
+             '&PageSize=' + 2;
+         return $resource(url).get();
+     }*/
+
+     function getUserAds() {
+            var user = authent.getUserData();
+            var adsResource = $resource(
+                baseServiceUrl + '/user/ads',
+                null,
+                {
+                    'getAll': {
+                        method: 'GET',
+                        headers: {Authorization: 'Bearer ' + user.access_token}
+                    }
+                }
+            );
+
+            return adsResource.getAll();
+        }
+
 
      function editAd(adId, ad) {
          return resource.update({
@@ -56,7 +81,8 @@
      }
 
      return {
-         getPublicAds: getPublicAds,
+         getPublicAdsWithParams: getPublicAdsWithParams,
+         getUserAds: getUserAds,
          editAd: editAd,
          getAdById: getAdById,
          postAd: postAd,

@@ -81,3 +81,11 @@ input.ng-valid.ng-dirty.form-validation {
 /* #the-image-preview {
     width: 300px;
 } */
+
+
+
+
+#main{
+    background-color: #FFCAE4;
+    border: 1px solid red;
+}

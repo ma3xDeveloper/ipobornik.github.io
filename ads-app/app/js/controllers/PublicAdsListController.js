@@ -4,7 +4,7 @@
 
          function loadPublicAds(filterParams) {
              filterParams = filterParams || {};
-             adsData.getPublicAds(filterParams)
+             adsData.getPublicAdsWithParams(filterParams)
                  .$promise
                  .then(function(data) {
                      notifyService.popUpSuccsessMessages("The Ads are loadet successfully");

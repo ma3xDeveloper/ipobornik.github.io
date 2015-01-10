@@ -1,5 +1,5 @@
-<div id="wrapper">
-    <h2>re...</h2>
+<div class="col-md-9">
+    <h2>publish new add</h2>
     <form>
         <label for="title">Titel*</label>
         <input type="text" id="title" ng-model="newAdObj.title" />
@@ -17,7 +17,7 @@
       <label for="town">Town</label>
       <select id="town" ng-options="town.id as town.name for town in towns" ng-model="newAdObj.townId">
       </select> -->
-         <input type="button" value="Publish New Add" ng-click="publishNewAdClicked(newAdObj)">
+        <input type="button" value="Publish New Add" ng-click="publishNewAdClicked(newAdObj)">
         <input type="button" value="cansel">
     </form>
 </div>

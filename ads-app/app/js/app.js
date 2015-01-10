@@ -6,9 +6,13 @@ var adsApp = angular
                 templateUrl: "app/templates/home.html",
                 controller: "AdsAppController"
             })
-            .when("/myads", {
-                templateUrl: "app/my-ads.html",
-                controller: "?"
+            .when("/my-ads", {
+                templateUrl: "app/templates/my-ads-list.html",
+                controller: "UserAdsController"
+            })
+            .when("/edit-my-ad", {
+                templateUrl: "app/templates/edit-my-ad.html",
+                controller: "EditAdsController"
             })
             .when("/publish", {
                 templateUrl: "app/templates/publichnewad.html",
@@ -20,7 +24,7 @@ var adsApp = angular
             })
             .when("/login", {
                 templateUrl: "app/templates/login.html",
-                controller: "LoginController"
+                controller: "AdsAppController"
             })
             .when("/register", {
                 templateUrl: "app/templates/register.html",

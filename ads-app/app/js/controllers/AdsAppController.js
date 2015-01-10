@@ -8,11 +8,6 @@
          $scope.isLoggedIn = authent.isLoggedIn();
          $scope.theusername = authent.getUsername();
 
-         $scope.logoutClicked = function() {
-             $scope.theusername.username = "";
-             userData.logOutUser("user");
-         };
-
          $scope.switchHeaderName = function() {
              var path = $location.path();
 
@@ -25,4 +20,27 @@
 
              //TODO switchin header names
          };
+
+         $scope.login = function(user) {
+             userData.login(user)
+                 .$promise
+                 .then(function() {
+                     $location.path("/");
+                 });
+         };
+
+         // TODO - Refreshing the page after login/logout
+
+
+         $scope.logoutClicked = function() {
+             $scope.theusername.username = "";
+             userData.logOutUser("user");
+         };
+
+
+          /*$scope.editMyAdClicked = function(editAd) {
+            $scope.editAdData = editAd;
+            console.log( $scope.editAdData);
+            console.log( $scope.editAdData.ads);
+         };*/
      });

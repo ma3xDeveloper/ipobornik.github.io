@@ -18,9 +18,18 @@
         <!-- TODO: addin other switch pages in AdsAppController.js-->
     </header>
 
-    <div ng-view>
+    <div id="wrapper">
+        <div class="row">
+            <div class="col-md-3">
+                <div ng-include="'app/templates/left-public-sidebar.html'" ng-if="!isLoggedIn"></div>
+                <div ng-include="'app/templates/left-loggeduser-sidebar.html'" ng-if="isLoggedIn"></div>
+            </div>
+            <div id="main">
+                <div ng-view>
+                </div>
+            </div>
+        </div>
     </div>
-
 
     <footer>
         <p>Made by Matrix - <a href="http://thecodeistrueorfalse.wordpress.com/"> Blog</a>, <a href="https://github.com/ipobornik"> GitHub</a>. {{footerinfo}}</p>
@@ -39,6 +48,8 @@
 
     <script type="text/javascript" src="/app/js/directives/leftpublic-sidebar.js"></script>
     <script type="text/javascript" src="/app/js/directives/public-ads-list.js"></script>
+    <script type="text/javascript" src="/app/js/directives/my-ads-list.js"></script>
+    <script type="text/javascript" src="/app/js/directives/edit-my-ad.js"></script>
     <script type="text/javascript" src="/app/js/directives/towns.js"></script>
     <script type="text/javascript" src="/app/js/directives/category.js"></script>
 
@@ -52,12 +63,13 @@
 
     <script type="text/javascript" src="/app/js/controllers/AdsAppController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/HomeController.js"></script>
-    <script type="text/javascript" src="/app/js/controllers/LoginController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/RegisterController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/PublicAdsListController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/TownsListController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/CategoryListController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/PublishNewAdController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/UserAdsController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/EditAdsController.js"></script>
 
 </body>
 
