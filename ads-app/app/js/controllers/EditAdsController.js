@@ -7,10 +7,10 @@
              localStorage.setItem(idForEdit, editAd.id);
          };
          var getIdForEdit = localStorage.getItem(idForEdit);
-         
-             $scope.editAdData = adsData.getAdById(getIdForEdit);
-                
-       
+
+         $scope.editAdData = adsData.getAdById(getIdForEdit);
+
+
 
          $scope.publishEditedAdToServer = function(editedAdObj, id) {
              adsData.editAd(editedAdObj, id)
@@ -26,24 +26,24 @@
 
 
 
-  /*       $scope.deleteMyAdClicked = function(ad) {
-             localStorage.setItem(idForDelete, ad.id);
-         };
-         var getIdForDelete = localStorage.getItem(idForDelete);
-         if (getIdForDelete !== undefined) {
-             adsData.deleteAd(getIdForDelete)
-                 .$promise
-                 .then(function() {
-                     notifyService.popUpSuccsessMessages("The Ad DELETED successfully");
-                     localStorage.removeItem(idForDelete);
-                     $location.path("/my-ads");
-                 }, function(serverError) {
-                     notifyService.popUpErrorMessageWithRestError("ERROR!", serverError);
-                 });
+         /*       $scope.deleteMyAdClicked = function(ad) {
+                    localStorage.setItem(idForDelete, ad.id);
+                };
+                var getIdForDelete = localStorage.getItem(idForDelete);
+                if (getIdForDelete !== undefined) {
+                    adsData.deleteAd(getIdForDelete)
+                        .$promise
+                        .then(function() {
+                            notifyService.popUpSuccsessMessages("The Ad DELETED successfully");
+                            localStorage.removeItem(idForDelete);
+                            $location.path("/my-ads");
+                        }, function(serverError) {
+                            notifyService.popUpErrorMessageWithRestError("ERROR!", serverError);
+                        });
 
-         }*/
+                }*/
 
-  /*       $scope.makeAdInactiveClicked = function(ad) {
+         /*       $scope.makeAdInactiveClicked = function(ad) {
              localStorage.setItem(idForDeactive, ad.id);
          };
          var getIdForDeactive = localStorage.getItem(idForDeactive);

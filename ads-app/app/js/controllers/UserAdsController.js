@@ -1,5 +1,6 @@
  adsApp.controller("UserAdsController",
      function UserAdsController($scope, adsData, notifyService) {
+         $scope.ready = false;
          adsData.getUserAds()
              .$promise
              .then(function(data) {
