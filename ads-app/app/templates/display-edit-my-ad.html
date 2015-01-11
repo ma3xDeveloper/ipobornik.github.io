@@ -1,0 +1,30 @@
+<div class="col-md-9">
+    <div id="display-ads-container" ng-controller="EditAdsController">
+        <ul ng-cloak>
+            <li>
+                <div ng-if='editAdData.imageDataUrl'>
+                    <strong>Image:</strong>
+                    <img class="imagecontainer" ng-src="{{editAdData.imageDataUrl}}" />       </div>
+                <h4>{{editAdData.title}} </h4>
+                <input type="text" ng-model="editAdObj.title">
+                <div><strong>Date:</strong> {{editAdData.date | date:'dd-MMM-yyyy'}} </div>
+                <input type="text" ng-model="editAdObj.date">
+                <div><span><strong>Description:</strong> </span>{{editAdData.text}} </div>
+                <input type="text" ng-model="editAdObj.text">
+                <div><span><strong>Name:</strong> </span>{{editAdData.ownerName}} </div>
+                <input type="text" ng-model="editAdObj.ownerName">
+                <div><span><strong>Email:</strong> </span>{{editAdData.ownerEmail}} </div>
+                <input type="text" ng-model="editAdObj.ownerEmail">
+                <div><span><strong>Phone:</strong> </span>{{editAdData.ownerPhone}}</div>
+                <input type="text" ng-model="editAdObj.ownerPhone">
+
+                <div class="user-panel">
+                    <div class="user-panel">
+                    <a href="" ng-hide="editAdData.status === 'WaitingApproval' || editAdData.status === 'Published'" ng-click="publishEditedAdToServer(editAdObj,editAdData.id)">PUT Edit</a>
+                        <a href="#/my-ads">Cansel</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

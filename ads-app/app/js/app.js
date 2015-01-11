@@ -11,7 +11,7 @@ var adsApp = angular
                 controller: "UserAdsController"
             })
             .when("/edit-my-ad", {
-                templateUrl: "app/templates/edit-my-ad.html",
+                templateUrl: "app/templates/display-edit-my-ad.html",
                 controller: "EditAdsController"
             })
             .when("/publish", {

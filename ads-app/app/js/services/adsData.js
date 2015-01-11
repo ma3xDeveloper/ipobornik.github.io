@@ -114,11 +114,40 @@
      }
 
 
-     function deleteAd(adId) {
-         return resource.delete({
-             id: adId
-         });
+     function deleteAd(id) {
+         var user = authent.getUserData();
+         var adsResource = $resource(
+             baseServiceUrl + '/user/ads/' + id,
+             null, {
+                 'deleteThisAd': {
+                     method: 'DELETE',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     }
+                 }
+             }
+         );
+
+         return adsResource.deleteThisAd();
      }
+
+     function deactiveAd(id) {
+         var user = authent.getUserData();
+         var adsResource = $resource(
+             baseServiceUrl + '/user/ads/deactivate/' + id,
+             null, {
+                 'deactivate': {
+                     method: 'PUT',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     }
+                 }
+             }
+         );
+
+         return adsResource.deactivate(id);
+     }
+
 
      return {
          getPublicAdsWithParams: getPublicAdsWithParams,
@@ -126,6 +155,7 @@
          editAd: editAd,
          getAdById: getAdById,
          postAd: postAd,
-         deleteAd: deleteAd
+         deleteAd: deleteAd,
+         deactiveAd: deactiveAd
      };
  });

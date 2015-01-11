@@ -12,7 +12,7 @@
              var path = $location.path();
 
              if (path === "/home") {
-                 return "home";
+                 return "home"; 
              }
              if (path === "/login") {
                  return "login";

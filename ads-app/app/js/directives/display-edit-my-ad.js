@@ -1,4 +1,4 @@
-adsApp.directive("editMyAd", function(){
+adsApp.directive("displayEditMyAd", function(){
 
 		return {
 			restrict: "E",
