@@ -39,7 +39,24 @@
      }
 
 
-    u
+     function editAd(ad, id) {
+         var user = authent.getUserData();
+
+         var adsResource = $resource(
+             baseServiceUrl + 'user/ads/' + id,
+             null, {
+                 'publishAd': {
+                     method: 'PUT',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     },
+                     data: ad
+                 }
+             }
+         );
+
+         return adsResource.publishAd(ad);
+     }
 
 
 
