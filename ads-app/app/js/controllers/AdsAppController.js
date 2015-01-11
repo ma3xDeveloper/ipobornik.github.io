@@ -1,5 +1,5 @@
  adsApp.controller("AdsAppController",
-     function AdsAppController($scope, $location, authent, userData) {
+     function AdsAppController($scope, $location,$rootScope, authent, userData) {
          $scope.footerinfo = "SoftUni AngularJS Practical Project 2014";
          $scope.headerTitle = "Home";
          // Put the authService in the $scope to make it accessible from all screens
@@ -38,9 +38,4 @@
          };
 
 
-          /*$scope.editMyAdClicked = function(editAd) {
-            $scope.editAdData = editAd;
-            console.log( $scope.editAdData);
-            console.log( $scope.editAdData.ads);
-         };*/
      });

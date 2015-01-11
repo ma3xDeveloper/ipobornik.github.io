@@ -11,12 +11,12 @@
                 <div><strong>Date:</strong> {{ad.date | date:'dd-MMM-yyyy'}}</div>
                 <div><span><strong>Description:</strong> </span>{{ad.text}}</div>
                 <div><span><strong>Name:</strong> </span>{{ad.ownerName}}</div>
-                <div><span><strong>Email:</strong> </span>{{ad.ownerEmail}}</div>
+                <div><span><strong>Email:</strong> </span >{{ad.ownerEmail}}</div>
                 <div><span><strong>Phone:</strong> </span>{{ad.ownerPhone}}</div>
                 <div class="user-panel">
                     <a href="" ng-show="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="makeInactiveC(this, $event)">Deactivate</a>
                     <a href="" ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="publishAgain(element, $event)">Publish again</a>
-                    <a href="#/edit-my-ad" ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="editMyAdClicked(ad)">Edit</a>
+                    <a href="#/edit-my-ad/" ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="editMyAdClicked(ad)">Edit</a>
                     <a href="#/user/ads/delete/{{ad.id}}" ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'">Delete</a>
                 </div>
             </li>

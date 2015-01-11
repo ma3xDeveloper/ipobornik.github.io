@@ -13,42 +13,82 @@
          return resource.get(filterParams);
      }
 
-   /*  function getPublicAdsWithOUTParams() {
-         var url = baseServiceUrl + 'ads?CategoryId=' + "" +
-             '&TownId=' + "" +
-             '&StartPage=' + 1 +
-             '&PageSize=' + 2;
-         return $resource(url).get();
-     }*/
+     /*  function getPublicAdsWithOUTParams() {
+           var url = baseServiceUrl + 'ads?CategoryId=' + "" +
+               '&TownId=' + "" +
+               '&StartPage=' + 1 +
+               '&PageSize=' + 2;
+           return $resource(url).get();
+       }*/
 
      function getUserAds() {
-            var user = authent.getUserData();
-            var adsResource = $resource(
-                baseServiceUrl + '/user/ads',
-                null,
-                {
-                    'getAll': {
-                        method: 'GET',
-                        headers: {Authorization: 'Bearer ' + user.access_token}
-                    }
-                }
-            );
+         var user = authent.getUserData();
+         var adsResource = $resource(
+             baseServiceUrl + '/user/ads',
+             null, {
+                 'getAll': {
+                     method: 'GET',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     }
+                 }
+             }
+         );
 
-            return adsResource.getAll();
-        }
-
-
-     function editAd(adId, ad) {
-         return resource.update({
-             id: adId
-         }, ad);
+         return adsResource.getAll();
      }
 
-     function getAdById(adId) {
-         return resource.get({
-             id: adId
-         });
+
+     function editAd(ad, id) {
+         var user = authent.getUserData();
+
+         var adsResource = $resource(
+             baseServiceUrl + 'user/ads/' + id,
+             null, {
+                 'publishAd': {
+                     method: 'PUT',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     },
+                     data: ad
+                 }
+             }
+         );
+
+         return adsResource.publishAd(ad);
      }
+
+
+
+     /* function editAd(adId, ad) {
+          return resource.update({
+              id: adId
+          }, ad);
+      }*/
+     /*
+          function getAdById(adId) {
+              return resource.get({
+                  id: adId
+              });
+          }*/
+
+     function getAdById(id) {
+         var user = authent.getUserData();
+         var adsResource = $resource(
+             baseServiceUrl + '/user/ads/' + id,
+             null, {
+                 'getMyAd': {
+                     method: 'GET',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     }
+                 }
+             }
+         );
+
+         return adsResource.getMyAd();
+     }
+
 
      /* function postAd(ad) {
           return resource.save(ad);
