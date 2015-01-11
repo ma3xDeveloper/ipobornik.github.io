@@ -1,13 +1,30 @@
  adsApp.factory("userData", function($resource, baseServiceUrl, authent) {
 
      function registerUser(user) {
-         return $resource(baseServiceUrl + "user/register")
-             .save(user)
-             .$promise
+         var resource = $resource(baseServiceUrl + "user/register")
+             .save(user);
+
+             resource.$promise
              .then(function(data) {
                  authent.saveUser(data);
              });
      }
+
+     /*
+      function registerUser(ad) {
+              var adsResource = $resource(
+                  baseServiceUrl + 'user/register',
+                  null, {
+                      'publishAd': {
+                          method: 'POST',
+                          data: ad
+                      }
+                  }
+              );
+
+              return adsResource.publishAd(ad);
+          }*/
+
 
      function loginUser(user) {
          var resource = $resource(baseServiceUrl + "user/login")
@@ -65,7 +82,7 @@
      }
 
      return {
-         register: registerUser,
+         registerUser: registerUser,
          login: loginUser,
          logOutUser: logOutUser,
          loadProfile: loadProfile,
