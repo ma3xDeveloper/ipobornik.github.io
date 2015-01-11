@@ -20,7 +20,7 @@ var adsApp = angular
             }) 
             .when("/editprofile", {
                 templateUrl: "app/templates/edit-profile.html",
-                controller: "?"
+                controller: "EditProfileController"
             })
             .when("/login", {
                 templateUrl: "app/templates/login.html",

@@ -1,5 +1,5 @@
  adsApp.controller("AdsAppController",
-     function AdsAppController($scope, $location,$rootScope, authent, userData) {
+     function AdsAppController($scope, $location, $rootScope, authent, userData) {
          $scope.footerinfo = "SoftUni AngularJS Practical Project 2014";
          $scope.headerTitle = "Home";
          // Put the authService in the $scope to make it accessible from all screens
@@ -12,10 +12,25 @@
              var path = $location.path();
 
              if (path === "/home") {
-                 return "home"; 
+                 return "home";
              }
              if (path === "/login") {
                  return "login";
+             }
+             if (path === "/register") {
+                 return "register";
+             }
+             if (path === "/my-ads") {
+                 return "my-ads";
+             }
+             if (path === "/edit-my-ad") {
+                 return "edit-my-ad";
+             }
+             if (path === "/publish") {
+                 return "publish";
+             }
+             if (path === "/editprofile") {
+                 return "editprofile";
              }
 
              //TODO switchin header names

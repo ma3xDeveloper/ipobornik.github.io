@@ -13,8 +13,6 @@
        
 
          $scope.publishEditedAdToServer = function(editedAdObj, id) {
-            console.log(editedAdObj);
-            console.log(id);
              adsData.editAd(editedAdObj, id)
                  .$promise
                  .then(function() {

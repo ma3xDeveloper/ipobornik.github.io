@@ -2,26 +2,41 @@
     <div id="display-ads-container" ng-controller="EditAdsController">
         <ul ng-cloak>
             <li>
-                <div ng-if='editAdData.imageDataUrl'>
-                    <strong>Image:</strong>
-                    <img class="imagecontainer" ng-src="{{editAdData.imageDataUrl}}" />       </div>
-                <h4>{{editAdData.title}} </h4>
-                <input type="text" ng-model="editAdObj.title">
-                <div><strong>Date:</strong> {{editAdData.date | date:'dd-MMM-yyyy'}} </div>
-                <input type="text" ng-model="editAdObj.date">
-                <div><span><strong>Description:</strong> </span>{{editAdData.text}} </div>
-                <input type="text" ng-model="editAdObj.text">
-                <div><span><strong>Name:</strong> </span>{{editAdData.ownerName}} </div>
-                <input type="text" ng-model="editAdObj.ownerName">
-                <div><span><strong>Email:</strong> </span>{{editAdData.ownerEmail}} </div>
-                <input type="text" ng-model="editAdObj.ownerEmail">
-                <div><span><strong>Phone:</strong> </span>{{editAdData.ownerPhone}}</div>
-                <input type="text" ng-model="editAdObj.ownerPhone">
+                <div class="col-md-10" id="edit-ad-box">
+                    <div ng-if='editAdData.imageDataUrl'>
+                        <strong>Image:</strong>
+                        <img class="imagecontainer" ng-src="{{editAdData.imageDataUrl}}" />
+                    </div>
+                    <div><strong>*Title: </strong><span class="old-value">{{editAdData.title}}</span>
+                        <input type="text" ng-model="editAdObj.title"> </div>
 
-                <div class="user-panel">
+                    <div><strong>Date: </strong> <span class="old-value">{{editAdData.date | date:'dd-MMM-yyyy'}}</span>
+                        <input type="text" ng-model="editAdObj.date">
+                    </div>
+
+                    <div><strong>*Description: </strong><span class="old-value">{{editAdData.text}}</span>
+                        <input type="text" ng-model="editAdObj.text">
+                    </div>
+<span class="old-value"></span>
+                    <div><strong>Name: </strong><span class="old-value">{{editAdData.ownerName}}</span>
+                        <input type="text" ng-model="editAdObj.ownerName">
+                    </div>
+
+                    <div><strong>Email: </strong><span class="old-value">{{editAdData.ownerEmail}}</span>
+                        <input type="text" ng-model="editAdObj.ownerEmail">
+                    </div>
+
+                    <div><strong>Phone: </strong><span class="old-value">{{editAdData.ownerPhone}}</span>
+                        <input type="text" ng-model="editAdObj.ownerPhone">
+                    </div>
+
+                </div>
+                <div class="col-md-2">
                     <div class="user-panel">
-                    <a href="" ng-hide="editAdData.status === 'WaitingApproval' || editAdData.status === 'Published'" ng-click="publishEditedAdToServer(editAdObj,editAdData.id)">PUT Edit</a>
-                        <a href="#/my-ads">Cansel</a>
+                        <div class="user-panel">
+                            <a href="" ng-hide="editAdData.status === 'WaitingApproval' || editAdData.status === 'Published'" ng-click="publishEditedAdToServer(editAdObj,editAdData.id)">PUT Edit</a>
+                            <a href="#/my-ads">Cansel</a>
+                        </div>
                     </div>
                 </div>
             </li>

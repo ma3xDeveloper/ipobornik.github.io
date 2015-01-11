@@ -14,6 +14,11 @@
     <header ng-Cloak ng-switch on="switchHeaderName()">
         <h3 ng-switch-when="home">Ads - Home</h3>
         <h3 ng-switch-when="login">Ads - Login</h3>
+        <h3 ng-switch-when="register">Ads - Register</h3>
+        <h3 ng-switch-when="my-ads">Ads - my-ads</h3>
+        <h3 ng-switch-when="edit-my-ad">Ads - edit-my-ad</h3>
+        <h3 ng-switch-when="publish">Ads - publish new ad</h3>
+        <h3 ng-switch-when="editprofile">Ads - editprofile</h3>
         <h3 ng-switch-default>Ads</h3>
         <!-- TODO: addin other switch pages in AdsAppController.js-->
     </header>
@@ -52,6 +57,7 @@
     <script type="text/javascript" src="/app/js/directives/towns.js"></script>
     <script type="text/javascript" src="/app/js/directives/category.js"></script>
     <script type="text/javascript" src="/app/js/directives/display-edit-my-ad.js"></script>
+    <script type="text/javascript" src="/app/js/directives/edit-profile.js"></script>
 
     <script type="text/javascript" src="/app/js/services/townsData.js"></script>
     <script type="text/javascript" src="/app/js/services/userData.js"></script>
@@ -70,6 +76,7 @@
     <script type="text/javascript" src="/app/js/controllers/PublishNewAdController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/UserAdsController.js"></script>
     <script type="text/javascript" src="/app/js/controllers/EditAdsController.js"></script>
+    <script type="text/javascript" src="/app/js/controllers/EditProfileController.js"></script>
 
 </body>
 

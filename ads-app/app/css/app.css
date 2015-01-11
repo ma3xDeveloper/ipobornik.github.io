@@ -5,11 +5,10 @@ body {
     font-size: 16px;
 }
 h3 {
-    color: #404040;
+    color: #969696;
 }
-
 h4 {
-  color: #8A0000;  
+    color: #8A0000;
 }
 a {
     color: #E0BB3A;
@@ -34,14 +33,14 @@ footer {
     box-shadow: 2px 2px 3px #888888;
 }
 #wrapper {
-    background-color: #F4F4F4;
+    background-color: #FFFFFF;
 }
 #display-ads-container {
-    background-color: #E5E5E5;
+    background-color: #FFFFFF;
     padding: 0.3em;
 }
 #towns-sidebar-container, #categories-sidebar-container, #signbar-container {
-    background-color: #E5E5E5;
+    background-color: #FFFFFF;
     padding: 0.3em;
 }
 #signbar-container a {
@@ -56,6 +55,8 @@ footer {
 }
 .userpanel {
     font-family: "Times New Roman", sans-serif;
+    text-transform: none;
+    font-style: italic;
     color: #9E9E9E;
 }
 /* .adbox {
@@ -63,29 +64,72 @@ footer {
     padding: 0.5em 0 1em 0;
 } */
 /* VALIDATION */
-/* input.ng-invalid.ng-dirty.form-validation {
+ input.ng-invalid.ng-dirty.form-validation {
     background-color: #FF8080;
 }
 input.ng-valid.ng-dirty.form-validation {
     background-color: #8BF788;
-} */
+} 
+
 /* IMAGES */
 
 #loadingimage {
     width: 200px;
 }
- .imagecontainer {
-    width: 30%;
-    height: 30%;
-} 
-/* #the-image-preview {
+.imagecontainer {
+    width: 100%;
+    height: 100%;
+    margin-top: 1.4em;
+}
+ #the-image-preview {
     width: 300px;
-} */
+    margin-left: 2em;
+} 
+
+#main {
+    background-color: #FFFFFF;
+}
+/* DISPLAYPUBLICADS */
+
+#display-ads-container h2 {
+    background-color: #DDDDDD;
+    color: #6C0000;
+    padding: 0.2em;
+    font-weight: bolder;
+}
+.ad-box {
+    background-color: #E9E9E9;
+    margin-bottom: 3em;
+    padding: 0.6em 0 0.6em 0.6em;
+    border: solid 1px #ACACAC;
+        box-shadow: 1px 1px 3px #BEBEBE;
+
+}
+
+.user-panel a {
+    color: #C6EC8C;
+    font-size: 2em;
+    background-color: #000000;
+    padding: 5px;
+}
+
+.user-panel a:hover {
+     text-decoration: none;
+    color: #264307;
+    font-size: 2em;
+    background-color: #9B9B9B;
+    padding: 5px;
+}
+
+#edit-ad-box div {
+    margin-bottom: 2em;
+}
+
+.old-value{
+    color: #BEBEBE;
+}
 
 
-
-
-#main{
-    background-color: #FFCAE4;
-    border: 1px solid red;
+#publish-new-ad-container div{
+    margin-bottom: 2em;
 }

@@ -28,10 +28,48 @@
 
      }
 
+     function loadProfile() {
+         var user = authent.getUserData();
+         var adsResource = $resource(
+             baseServiceUrl + '/user/profile',
+             null, {
+                 'getUserProfile': {
+                     method: 'GET',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     }
+                 }
+             }
+         );
+
+         return adsResource.getUserProfile();
+     }
+
+     function editProfile(profile) {
+         var user = authent.getUserData();
+
+         var adsResource = $resource(
+             baseServiceUrl + 'user/profile',
+             null, {
+                 'publishNewProfile': {
+                     method: 'PUT',
+                     headers: {
+                         Authorization: 'Bearer ' + user.access_token
+                     },
+                     data: profile
+                 }
+             }
+         );
+
+         return adsResource.publishNewProfile(profile);
+     }
+
      return {
          register: registerUser,
          login: loginUser,
-         logOutUser: logOutUser
+         logOutUser: logOutUser,
+         loadProfile: loadProfile,
+         editProfile: editProfile
      };
 
 

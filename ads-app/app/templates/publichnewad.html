@@ -1,23 +1,47 @@
 <div class="col-md-9">
-    <h2>publish new add</h2>
-    <form>
-        <label for="title">Titel*</label>
-        <input type="text" id="title" ng-model="newAdObj.title" />
-        <br>
+ <h2>publish new add</h2>
+ <br><br>
+    <form name="newAdForm" id="publish-new-ad-container">
+        <div class="field">
+            <label>*Ad title: </label>
+            <input type="text" class="form-validation" ng-model="newAdObj.title" required="required" />
+        </div>
 
-        <label for="text">Text*</label>
-        <textarea rows="7" id="text" ng-model="newAdObj.text"></textarea>
-        <br>
-        <!--   <label for="image">Image</label>
-      <input type="text" id="image" ng-model="newAdObj.imageDataUrl" />
-      <br>
-      <label for="category">Category</label>
-      <input type="text" id="category" ng-model="newAdObj.categoryId" />
-      <br>
-      <label for="town">Town</label>
-      <select id="town" ng-options="town.id as town.name for town in towns" ng-model="newAdObj.townId">
-      </select> -->
-        <input type="button" value="Publish New Add" ng-click="publishNewAdClicked(newAdObj)">
-        <input type="button" value="cansel">
+        <div class="field">
+            <label>Date:</label>
+            <input type="text" class="form-validation" ng-model="newAdObj.date" />
+        </div>
+
+        <div class="field">
+            <label>*Text:</label>
+            <input type="text" rows="5" class="form-validation" ng-model="newAdObj.text" required="required" /> </div>
+
+        <div class="field">
+            <label>Name:</label>
+            <input type="text" class="form-validation" ng-model="newAdObj.ownerName" />
+        </div>
+
+        <div class="field">
+            <label>Email:</label>
+            <input type="text" class="form-validation" ng-model="newAdObj.ownerEmail" />
+        </div>
+
+        <div class="field">
+            <label>Phone:</label>
+            <input type="text" class="form-validation" ng-model="newAdObj.ownerPhone" />
+        </div>
+
+
+        <div class="field">
+            <label>Image:</label>
+            <input type="text" class="form-validation" ng-model="newAdObj.imageDataUrl" ng-pattern="/\.(gif|jpg|jpeg|tiff|png)$/i" />
+            <span id="image-preview-container">
+                  <img ng-src="{{newAdObj.imageDataUrl}}" src="" id="the-image-preview" />
+              </span>
+        </div>
+        <div class="field">
+            <input type="button" value="Publish Ad" ng-click="publishNewAdClicked(newAdObj)" ng-disabled="newAdForm.$invalid" />
+            <a href="#/">Cansel</a>
+        </div>
     </form>
 </div>

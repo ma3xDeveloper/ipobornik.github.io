@@ -1,1 +1,40 @@
-editprofile
+<div class="col-md-9">
+    <div id="display-ads-container" ng-controller="EditProfileController">
+        <h3>edit profile</h3>
+        <ul ng-cloak>
+            <br>
+            <li>
+                <div class="col-md-10" id="edit-ad-box">
+
+                    <div><strong>Username: </strong><span class="old-value">{{userProfileData.name}}</span>
+                        <input type="text" ng-model="editProfileObj.title"> </div>
+
+                    <div><strong>name Owner: </strong><span class="old-value">{{userProfileData.name}}</span>
+                        <input type="text" ng-model="editProfileObj.text">
+                    </div>
+                    <span class="old-value"></span>
+                    <div><strong>Name: </strong><span class="old-value">{{userProfileData.ownerName}}</span>
+                        <input type="text" ng-model="editProfileObj.ownerName">
+                    </div>
+
+                    <div><strong>Email: </strong><span class="old-value">{{userProfileData.email}}</span>
+                        <input type="text" ng-model="editProfileObj.ownerEmail">
+                    </div>
+
+                    <div><strong>Phone: </strong><span class="old-value">{{userProfileData.phone}}</span>
+                        <input type="text" ng-model="editProfileObj.ownerPhone">
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="user-panel">
+                        <div class="user-panel">
+                            <a href="" ng-click="publishEditedProfileToServer(editProfileObj,userProfileData.id)">Profile Edit</a>
+                            <a href="#/my-ads">Cansel</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
