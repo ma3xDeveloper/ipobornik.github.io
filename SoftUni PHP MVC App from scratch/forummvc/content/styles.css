@@ -1,0 +1,60 @@
+/* body>header>a>img, body>header ul, body>header ul>li {
+    display: inline-block;
+    vertical-align: middle;
+}
+li.info {
+    background: #7f7;
+}
+li.error {
+    background: #f77;
+}
+#logged-in-info {
+    float: right;
+}
+.menulink a {
+    color: #580A15;
+}
+ */
+
+.wrapper {
+    padding: 2em 3em 2em 3em;
+    margin: 0em 25em 0em 25em;
+}
+.categorie {
+    padding-bottom: 2em;
+}
+.caregorie-button-box {
+    padding: 0em 4em 2em 4em;
+}
+.caregorie-button-box p {
+    padding: 1.5em;
+}
+.question-box {
+    padding: 0em 0em 2em 0em;
+}
+.answers-box {
+    padding: 0.3em 5em 3em 5em;
+}
+.edit-answers-panel, .edit-questions-panel {
+    margin-top: -1em;
+}
+.create-answer-form {
+    padding: 0em 2em 1em 2em;
+}
+.categorie-questions {
+    padding: 0em 1em 2em 1em;
+}
+.nav-pills {
+    padding: 0em 0 0.6em 1em;
+}
+.login-form {
+    padding: 0em 15em 0em 15em;
+}
+.jumbotron {
+    padding: 2em;
+}
+
+/* #footer-text{
+    display: inline-block;
+    vertical-align: middle;
+} */
